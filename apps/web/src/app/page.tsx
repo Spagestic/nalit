@@ -1,6 +1,6 @@
 "use client";
-import { useQuery } from "convex/react";
 import { api } from "@nalit/backend/convex/_generated/api";
+import { useQuery } from "convex/react";
 
 const TITLE_TEXT = `
  ██████╗ ███████╗████████╗████████╗███████╗██████╗
@@ -19,28 +19,37 @@ const TITLE_TEXT = `
  `;
 
 export default function Home() {
-	const healthCheck = useQuery(api.healthCheck.get);
+  const healthCheck = useQuery(api.healthCheck.get);
 
-	return (
-		<div className="container mx-auto max-w-3xl px-4 py-2">
-			<pre className="overflow-x-auto font-mono text-sm">{TITLE_TEXT}</pre>
-			<div className="grid gap-6">
-				<section className="rounded-lg border p-4">
-					<h2 className="mb-2 font-medium">API Status</h2>
-					<div className="flex items-center gap-2">
-						<div
-							className={`h-2 w-2 rounded-full ${healthCheck === "OK" ? "bg-green-500" : healthCheck === undefined ? "bg-orange-400" : "bg-red-500"}`}
-						/>
-						<span className="text-sm text-muted-foreground">
-							{healthCheck === undefined
-								? "Checking..."
-								: healthCheck === "OK"
-									? "Connected"
-									: "Error"}
-						</span>
-					</div>
-				</section>
-			</div>
-		</div>
-	);
+  let statusClass = "bg-red-500";
+  if (healthCheck === "OK") {
+    statusClass = "bg-green-500";
+  } else if (healthCheck === undefined) {
+    statusClass = "bg-orange-400";
+  }
+
+  return (
+    <div className="container mx-auto max-w-3xl px-4 py-2">
+      <pre className="overflow-x-auto font-mono text-sm">{TITLE_TEXT}</pre>
+      <div className="grid gap-6">
+        <section className="rounded-lg border p-4">
+          <h2 className="mb-2 font-medium">API Status</h2>
+          <div className="flex items-center gap-2">
+            <div className={`h-2 w-2 rounded-full ${statusClass}`} />
+            <span className="text-muted-foreground text-sm">
+              {(() => {
+                if (healthCheck === undefined) {
+                  return "Checking...";
+                }
+                if (healthCheck === "OK") {
+                  return "Connected";
+                }
+                return "Error";
+              })()}
+            </span>
+          </div>
+        </section>
+      </div>
+    </div>
+  );
 }
