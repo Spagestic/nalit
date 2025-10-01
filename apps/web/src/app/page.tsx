@@ -1,55 +1,14 @@
-"use client";
-import { api } from "@nalit/backend/convex/_generated/api";
-import { useQuery } from "convex/react";
-
-const TITLE_TEXT = `
- ██████╗ ███████╗████████╗████████╗███████╗██████╗
- ██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
- ██████╔╝█████╗     ██║      ██║   █████╗  ██████╔╝
- ██╔══██╗██╔══╝     ██║      ██║   ██╔══╝  ██╔══██╗
- ██████╔╝███████╗   ██║      ██║   ███████╗██║  ██║
- ╚═════╝ ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
-
- ████████╗    ███████╗████████╗ █████╗  ██████╗██╗  ██╗
- ╚══██╔══╝    ██╔════╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝
-    ██║       ███████╗   ██║   ███████║██║     █████╔╝
-    ██║       ╚════██║   ██║   ██╔══██║██║     ██╔═██╗
-    ██║       ███████║   ██║   ██║  ██║╚██████╗██║  ██╗
-    ╚═╝       ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
- `;
+import Header from "@/components/header";
+import HeroContent from "@/components/hero-content";
+import ShaderBackground from "@/components/shader-background";
 
 export default function Home() {
-  const healthCheck = useQuery(api.healthCheck.get);
-
-  let statusClass = "bg-red-500";
-  if (healthCheck === "OK") {
-    statusClass = "bg-green-500";
-  } else if (healthCheck === undefined) {
-    statusClass = "bg-orange-400";
-  }
-
   return (
-    <div className="container mx-auto max-w-3xl px-4 py-2">
-      <pre className="overflow-x-auto font-mono text-sm">{TITLE_TEXT}</pre>
-      <div className="grid gap-6">
-        <section className="rounded-lg border p-4">
-          <h2 className="mb-2 font-medium">API Status</h2>
-          <div className="flex items-center gap-2">
-            <div className={`h-2 w-2 rounded-full ${statusClass}`} />
-            <span className="text-muted-foreground text-sm">
-              {(() => {
-                if (healthCheck === undefined) {
-                  return "Checking...";
-                }
-                if (healthCheck === "OK") {
-                  return "Connected";
-                }
-                return "Error";
-              })()}
-            </span>
-          </div>
-        </section>
-      </div>
+    <div className="">
+      <ShaderBackground>
+        <Header />
+        <HeroContent />
+      </ShaderBackground>
     </div>
   );
 }
