@@ -12,25 +12,24 @@ export default function HeroContent() {
         >
           <div className="absolute top-0 right-1 left-1 h-px rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent" />
           <span className="relative z-10 font-light text-white/90 text-xs">
-            ✨ New Paper Shaders Experience
+            ✨ AI-Powered Interview Practice
           </span>
         </div>
 
         {/* Main Heading */}
         <h1 className="mb-4 font-light text-5xl text-white tracking-tight md:text-6xl md:leading-16">
-          <span className="instrument font-medium italic">Beautiful</span>{" "}
-          Shader
+          <span className="instrument font-medium italic">Master</span> Your
           <br />
           <span className="font-light text-white tracking-tight">
-            Experiences
+            Interview Skills
           </span>
         </h1>
 
         {/* Description */}
         <p className="mb-4 font-light text-white/70 text-xs leading-relaxed">
-          Create stunning visual experiences with our advanced shader
-          technology. Interactive lighting, smooth animations, and beautiful
-          effects that respond to your every move.
+          Simulate voice-based interviews and get targeted feedback on your
+          speech content and delivery. Practice with company-specific questions
+          and improve faster.
         </p>
 
         {/* Buttons */}
