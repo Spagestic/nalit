@@ -1,5 +1,7 @@
 "use client";
 import { Hexagon } from "lucide-react";
+import Link from "next/link";
+import { Button } from "./ui/button";
 
 export default function Header() {
   return (
@@ -56,12 +58,13 @@ export default function Header() {
             />
           </svg>
         </button>
-        <button
+        <Button
+          asChild
           className="z-10 flex h-8 cursor-pointer items-center rounded-full bg-white px-6 py-2 font-normal text-black text-xs transition-all duration-300 hover:bg-white/90"
           type="button"
         >
-          Login
-        </button>
+          <Link href="/dashboard">Login</Link>
+        </Button>
       </div>
     </header>
   );
