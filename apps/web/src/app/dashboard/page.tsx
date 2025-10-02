@@ -10,12 +10,8 @@ import { useState } from "react";
 import { AppSidebar } from "@/components/app-sidebar";
 import { DraggableCamera } from "@/components/draggable-camera";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default function DashboardPage() {
   const { theme } = useTheme();
@@ -55,31 +51,65 @@ export default function DashboardPage() {
   };
 
   return (
-    <SidebarProvider className="">
-      <AppSidebar />
-      <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
-          <div className="flex w-full px-4">
-            <div className="ml-auto">
-              <ModeToggle />
+    <DndContext onDragEnd={handleDragEnd}>
+      <SidebarProvider className="">
+        <AppSidebar />
+        <SidebarInset className="relative">
+          {" "}
+          {/* Add relative positioning */}
+          <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+            <div className="flex w-full px-4">
+              <div className="ml-auto">
+                <ModeToggle />
+              </div>
             </div>
+          </header>
+          <div className="flex w-full justify-center">
+            <Dithering
+              colorBack={theme === "dark" ? "#000000" : "#ffffff"}
+              colorFront="#00b3ff"
+              height={640}
+              scale={0.5}
+              shape="sphere"
+              size={2}
+              speed={1}
+              type="8x8"
+              width={1280}
+            />
           </div>
-        </header>
-
-        <div className="flex w-full justify-center">
-          <Dithering
-            colorBack={theme === "dark" ? "#000000" : "#ffffff"}
-            colorFront="#00b3ff"
-            height={720}
-            scale={0.5}
-            shape="sphere"
-            size={2}
-            speed={1}
-            type="8x8"
-            width={1280}
-          />
-        </div>
-      </SidebarInset>
-    </SidebarProvider>
+          <div className="flex w-full justify-center gap-6 p-4">
+            <Button
+              className="h-16 w-16 rounded-full"
+              size={"lg"}
+              variant={"secondary"}
+            >
+              <AudioLines className="size-5" />
+            </Button>
+            <Button
+              className="h-16 w-16 rounded-full"
+              size={"lg"}
+              variant={"secondary"}
+            >
+              <VideoIcon className="size-5" />
+            </Button>
+            <Button
+              className="h-16 w-16 rounded-full"
+              size={"lg"}
+              variant={"secondary"}
+            >
+              <MicOffIcon className="size-5" />
+            </Button>
+            <Button
+              className="h-16 w-16 rounded-full"
+              size={"lg"}
+              variant={"secondary"}
+            >
+              <XIcon className="size-5" />
+            </Button>
+          </div>
+          <DraggableCamera position={cameraPosition} />
+        </SidebarInset>
+      </SidebarProvider>
+    </DndContext>
   );
 }
