@@ -6,12 +6,14 @@ import { useQuery } from "convex/react";
 import { useTheme } from "next-themes";
 import { AppSidebar } from "@/components/app-sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Separator } from "@/components/ui/separator";
+// import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
+  // SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { AudioLines, CrossIcon, Mic2Icon, MicOffIcon, XIcon } from "lucide-react";
 
 export default function DashboardPage() {
   const { theme } = useTheme();
@@ -33,7 +35,7 @@ export default function DashboardPage() {
           <Dithering
             colorBack={theme === "dark" ? "#000000" : "#ffffff"}
             colorFront="#00b3ff"
-            height={720}
+            height={640}
             scale={0.5}
             shape="sphere"
             size={2}
@@ -42,6 +44,18 @@ export default function DashboardPage() {
             width={1280}
           />
         </div>
+        <div className="flex w-full justify-center gap-6 p-4">
+            <Button className="rounded-full h-16 w-16" size={"lg"} variant={"secondary"}> 
+              <AudioLines className="size-5" />
+            </Button>
+            <Button className="rounded-full h-16 w-16" size={"lg"} variant={"secondary"}> 
+              <MicOffIcon className="size-5" />
+            </Button>
+            <Button className="rounded-full h-16 w-16" size={"lg"} variant={"secondary"}> 
+              <XIcon className="size-5" />
+            </Button>
+        </div>
+
       </SidebarInset>
     </SidebarProvider>
   );
