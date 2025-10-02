@@ -1,78 +1,48 @@
 "use client";
 
 import { api } from "@nalit/backend/convex/_generated/api";
+import { Dithering } from "@paper-design/shaders-react";
+import { useQuery } from "convex/react";
+import { useTheme } from "next-themes";
+import { AppSidebar } from "@/components/app-sidebar";
+import { ModeToggle } from "@/components/mode-toggle";
+import { Separator } from "@/components/ui/separator";
 import {
-  Dithering,
-  // LiquidMetal
-} from "@paper-design/shaders-react";
-import {
-  Authenticated,
-  AuthLoading,
-  Unauthenticated,
-  useQuery,
-} from "convex/react";
-import { useState } from "react";
-import SignInForm from "@/components/sign-in-form";
-import SignUpForm from "@/components/sign-up-form";
-import UserMenu from "@/components/user-menu";
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
 
 export default function DashboardPage() {
-  const [showSignIn, setShowSignIn] = useState(false);
-  const privateData = useQuery(api.privateData.get);
+  const { theme } = useTheme();
+  const _privateData = useQuery(api.privateData.get);
 
   return (
-    <>
-      <Authenticated>
-        <div className="fe w-full p-6">
-          <div className="mb-10 flex w-full items-center justify-between gap-4">
-            <h1>Dashboard</h1>
-            <p>privateData: {privateData?.message}</p>
-            <UserMenu />
+    <SidebarProvider className="">
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
+          <div className="flex w-full px-4">
+            <div className="ml-auto">
+              <ModeToggle />
+            </div>
           </div>
+        </header>
 
-          <div className="flex w-full justify-center">
-            <Dithering
-              colorBack="#ffffff"
-              colorFront="#00b3ff"
-              height={720}
-              scale={0.5}
-              shape="sphere"
-              size={2}
-              speed={1}
-              type="8x8"
-              width={1280}
-            />
-          </div>
-
-          {/* <div className="flex w-full justify-center">
-            <LiquidMetal
-              colorBack="#ffffff"
-              colorTint="#ffffff"
-              contour={1}
-              distortion={0.1}
-              height={720}
-              repetition={4}
-              scale={0.5}
-              shape="circle"
-              shiftBlue={0.3}
-              shiftRed={0.3}
-              softness={0.3}
-              speed={1}
-              width={1280}
-            />
-          </div> */}
+        <div className="flex w-full justify-center">
+          <Dithering
+            colorBack={theme === "dark" ? "#000000" : "#ffffff"}
+            colorFront="#00b3ff"
+            height={720}
+            scale={0.5}
+            shape="sphere"
+            size={2}
+            speed={1}
+            type="8x8"
+            width={1280}
+          />
         </div>
-      </Authenticated>
-      <Unauthenticated>
-        {showSignIn ? (
-          <SignInForm onSwitchToSignUp={() => setShowSignIn(false)} />
-        ) : (
-          <SignUpForm onSwitchToSignIn={() => setShowSignIn(true)} />
-        )}
-      </Unauthenticated>
-      <AuthLoading>
-        <div>Loading...</div>
-      </AuthLoading>
-    </>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
