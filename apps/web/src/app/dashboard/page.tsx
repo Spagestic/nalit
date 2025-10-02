@@ -25,7 +25,7 @@ export default function DashboardPage() {
   const _privateData = useQuery(api.privateData.get);
   const [cameraPosition, setCameraPosition] = useState({ x: 16, y: 16 });
   // 1. Add state to manage camera visibility
-  const [isCameraVisible, setIsCameraVisible] = useState(true);
+  const [isCameraVisible, setIsCameraVisible] = useState(false);
   const [isMicOn, setIsMicOn] = useState(true);
   const SidebarWidth = 256;
 
