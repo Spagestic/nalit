@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@convex-dev/better-auth": "^0.8.4",
+    "@elevenlabs/elevenlabs-js": "^2.16.0",
     "@hookform/resolvers": "^5.2.2",
     "@nalit/backend": "workspace:*",
     "@paper-design/shaders-react": "^0.0.55",
