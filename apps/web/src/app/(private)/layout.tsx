@@ -2,8 +2,10 @@
 
 import { Authenticated, AuthLoading, Unauthenticated } from "convex/react";
 import { useState } from "react";
+import { AppSidebar } from "@/components/app-sidebar";
 import SignInForm from "@/components/sign-in-form";
 import SignUpForm from "@/components/sign-up-form";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 
 export default function DashboardLayout({
   children,
@@ -14,7 +16,13 @@ export default function DashboardLayout({
 
   return (
     <>
-      <Authenticated>{children}</Authenticated>
+      <Authenticated>
+        {/* Sidebar logic moved from call/page.tsx */}
+        <SidebarProvider className="">
+          <AppSidebar />
+          <SidebarInset className="relative">{children}</SidebarInset>
+        </SidebarProvider>
+      </Authenticated>
       <Unauthenticated>
         {showSignIn ? (
           <SignInForm onSwitchToSignUp={() => setShowSignIn(false)} />
