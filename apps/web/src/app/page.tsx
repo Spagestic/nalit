@@ -15,9 +15,9 @@ export default function Home() {
       </ShaderBackground>
       <LogoCloud />
       <Footer
-        brandName="Nalit"
+        brandName="NorthStar"
         copyright={{
-          text: "© 2025 Nalit",
+          text: "© 2025 NorthStar",
           license: "All rights reserved",
         }}
         legalLinks={[
