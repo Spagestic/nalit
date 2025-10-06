@@ -246,12 +246,12 @@ export default function PricingSection() {
           </div> */}
 
           {/* Title */}
-          <div className="flex flex-col justify-center self-stretch text-center font-sans font-semibold text-3xl text-[#49423D] leading-tight tracking-tight md:text-5xl md:leading-[60px]">
+          <div className="flex flex-col justify-center self-stretch text-center font-sans font-semibold text-2xl text-[#49423D] leading-tight tracking-tight md:text-3xl md:leading-tight lg:text-4xl lg:leading-tight">
             Choose the perfect plan for your interview prep
           </div>
 
           {/* Description */}
-          <div className="self-stretch text-center font-normal font-sans text-[#605A57] text-base leading-7">
+          <div className="self-stretch text-center font-normal font-sans text-[#605A57] text-sm leading-7 md:text-base">
             Affordable pricing designed for students preparing for their dream
             jobs.
             <br />
@@ -278,10 +278,10 @@ export default function PricingSection() {
               {/* Plan Header */}
               <div className="flex flex-col items-center justify-start gap-9 self-stretch">
                 <div className="flex flex-col items-start justify-start gap-2 self-stretch">
-                  <div className="font-medium font-sans text-[rgba(55,50,47,0.90)] text-lg leading-7">
+                  <div className="font-medium font-sans text-[rgba(55,50,47,0.90)] text-lg leading-7 md:text-xl">
                     Free
                   </div>
-                  <div className="w-full max-w-[242px] font-normal font-sans text-[rgba(41,37,35,0.70)] text-sm leading-5">
+                  <div className="w-full max-w-[242px] font-normal font-sans text-[rgba(41,37,35,0.70)] text-sm leading-5 md:text-base">
                     Perfect for trying out the platform and getting started.
                   </div>
                 </div>
@@ -315,10 +315,10 @@ export default function PricingSection() {
               {/* Plan Header */}
               <div className="flex flex-col items-center justify-start gap-9 self-stretch">
                 <div className="flex flex-col items-start justify-start gap-2 self-stretch">
-                  <div className="font-medium font-sans text-[#FBFAF9] text-lg leading-7">
+                  <div className="font-medium font-sans text-[#FBFAF9] text-lg leading-7 md:text-xl">
                     Pro
                   </div>
-                  <div className="w-full max-w-[242px] font-normal font-sans text-[#B2AEA9] text-sm leading-5">
+                  <div className="w-full max-w-[242px] font-normal font-sans text-[#B2AEA9] text-sm leading-5 md:text-base">
                     Unlimited practice with advanced AI feedback for serious
                     prep.
                   </div>
@@ -360,10 +360,10 @@ export default function PricingSection() {
               {/* Plan Header */}
               <div className="flex flex-col items-center justify-start gap-9 self-stretch">
                 <div className="flex flex-col items-start justify-start gap-2 self-stretch">
-                  <div className="font-medium font-sans text-[rgba(55,50,47,0.90)] text-lg leading-7">
+                  <div className="font-medium font-sans text-[rgba(55,50,47,0.90)] text-lg leading-7 md:text-xl">
                     Enterprise
                   </div>
-                  <div className="w-full max-w-[242px] font-normal font-sans text-[rgba(41,37,35,0.70)] text-sm leading-5">
+                  <div className="w-full max-w-[242px] font-normal font-sans text-[rgba(41,37,35,0.70)] text-sm leading-5 md:text-base">
                     Complete solution for large organizations and enterprises.
                   </div>
                 </div>

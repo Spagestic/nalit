@@ -92,10 +92,12 @@ export function LogoCloud({
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="mb-4 font-bold text-2xl text-foreground lg:text-3xl">
+          <h2 className="mb-4 font-semibold text-2xl text-foreground md:text-3xl lg:text-4xl">
             {title}
           </h2>
-          <p className="text-foreground/70 text-lg">{description}</p>
+          <p className="text-foreground/70 text-sm md:text-base">
+            {description}
+          </p>
         </motion.div>
 
         {/* Infinite scrolling logos */}

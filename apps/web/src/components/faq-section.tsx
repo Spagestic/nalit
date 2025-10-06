@@ -76,10 +76,10 @@ export default function FAQ() {
       <div className="flex flex-1 flex-col items-start justify-start gap-6 px-4 py-16 md:px-12 md:py-20 lg:flex-row lg:gap-12">
         {/* Left Column - Header */}
         <div className="flex w-full flex-col items-start justify-center gap-4 lg:flex-1 lg:py-5">
-          <div className="flex w-full flex-col justify-center font-sans font-semibold text-4xl text-[#49423D] leading-tight tracking-tight md:leading-[44px]">
+          <div className="flex w-full flex-col justify-center font-sans font-semibold text-2xl text-[#49423D] leading-tight tracking-tight md:text-3xl md:leading-tight lg:text-4xl lg:leading-tight">
             Frequently Asked Questions
           </div>
-          <div className="w-full font-normal font-sans text-[#605A57] text-base leading-7">
+          <div className="w-full font-normal font-sans text-[#605A57] text-sm leading-7 md:text-base">
             Everything you need to know about practicing
             <br className="hidden md:block" />
             interviews with AI-powered feedback.
@@ -103,7 +103,7 @@ export default function FAQ() {
                     onClick={() => toggleItem(index)}
                     type="button"
                   >
-                    <div className="flex-1 font-medium font-sans text-[#49423D] text-base leading-6">
+                    <div className="flex-1 font-medium font-sans text-[#49423D] text-base leading-6 md:text-lg">
                       {item.question}
                     </div>
                     <div className="flex items-center justify-center">
@@ -120,7 +120,7 @@ export default function FAQ() {
                       isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                     }`}
                   >
-                    <div className="px-5 pb-[18px] font-normal font-sans text-[#605A57] text-sm leading-6">
+                    <div className="px-5 pb-[18px] font-normal font-sans text-[#605A57] text-sm leading-6 md:text-base">
                       {item.answer}
                     </div>
                   </div>

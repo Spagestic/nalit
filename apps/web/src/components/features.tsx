@@ -7,10 +7,10 @@ export function Features() {
     <section className="py-16 md:py-32" id="features">
       <div className="@container mx-auto max-w-5xl px-6">
         <div className="text-center">
-          <h2 className="text-balance font-semibold text-4xl lg:text-5xl">
+          <h2 className="text-balance font-semibold text-2xl md:text-3xl lg:text-4xl">
             Practice smarter, not harder
           </h2>
-          <p className="mt-4">
+          <p className="mt-4 text-muted-foreground text-sm md:text-base">
             AI-powered feedback that helps you improve faster and land your
             dream job.
           </p>
@@ -22,11 +22,13 @@ export function Features() {
                 <Sparkles aria-hidden className="size-6" />
               </CardDecorator>
 
-              <h3 className="mt-6 font-medium">AI-Powered Feedback</h3>
+              <h3 className="mt-6 font-medium text-lg md:text-xl">
+                AI-Powered Feedback
+              </h3>
             </CardHeader>
 
             <CardContent>
-              <p className="text-sm">
+              <p className="text-muted-foreground text-sm md:text-base">
                 Get instant, detailed feedback on your speech delivery including
                 filler words, pace, pauses, and clarity to sound more confident.
               </p>
@@ -39,11 +41,13 @@ export function Features() {
                 <Settings2 aria-hidden className="size-6" />
               </CardDecorator>
 
-              <h3 className="mt-6 font-medium">Company-Specific Practice</h3>
+              <h3 className="mt-6 font-medium text-lg md:text-xl">
+                Company-Specific Practice
+              </h3>
             </CardHeader>
 
             <CardContent>
-              <p className="text-sm">
+              <p className="text-muted-foreground text-sm md:text-base">
                 Practice with curated question banks tailored to specific
                 companies and roles, so you're prepared for exactly what you'll
                 face.
@@ -57,11 +61,13 @@ export function Features() {
                 <Zap aria-hidden className="size-6" />
               </CardDecorator>
 
-              <h3 className="mt-6 font-medium">Voice-Based Simulation</h3>
+              <h3 className="mt-6 font-medium text-lg md:text-xl">
+                Voice-Based Simulation
+              </h3>
             </CardHeader>
 
             <CardContent>
-              <p className="text-sm">
+              <p className="text-muted-foreground text-sm md:text-base">
                 Realistic voice-based interview simulations that analyze both
                 your content and delivery to help you improve faster.
               </p>
