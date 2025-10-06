@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "nalit",
-  description: "nalit",
+  title: "NorthStar",
+  description: "AI-powered interview preparation platform",
 };
 
 export default function RootLayout({
