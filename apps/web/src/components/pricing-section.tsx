@@ -56,7 +56,7 @@ function BillingToggle({
   onToggle: (period: "monthly" | "annually") => void;
 }) {
   return (
-    <div className="relative flex items-center justify-center gap-4 self-stretch px-6 py-9 md:px-16">
+    <div className="relative flex items-center justify-center gap-4 self-stretch px-6 py-4 md:px-16">
       <div className="before:-z-10 relative z-20 flex items-center justify-center rounded-lg border border-[rgba(55,50,47,0.02)] bg-[rgba(55,50,47,0.03)] p-3 backdrop-blur-[44px] backdrop-brightness-110 backdrop-saturate-150 before:absolute before:inset-0 before:rounded-lg before:bg-white before:opacity-60">
         <div className="relative flex items-center justify-center gap-[2px] rounded-[99px] border-[0.5px] border-[rgba(55,50,47,0.08)] bg-[rgba(55,50,47,0.10)] p-[2px] shadow-[0px_1px_0px_white]">
           <div
@@ -218,9 +218,9 @@ export default function PricingSection() {
     >
       {/* Header Section */}
       <div className="flex items-center justify-center gap-6 self-stretch px-6 md:px-24">
-        <div className="flex w-full max-w-[586px] flex-col items-center justify-start gap-4 overflow-hidden rounded-lg px-6 py-5">
+        <div className="flex w-full max-w-[586px] flex-col items-center justify-start gap-4 overflow-hidden rounded-lg px-6 pt-12">
           {/* Pricing Badge */}
-          <div className="flex items-center justify-start gap-[8px] overflow-hidden rounded-[90px] border border-[rgba(2,6,23,0.08)] bg-white px-[14px] py-[6px]">
+          {/* <div className="flex items-center justify-start gap-[8px] overflow-hidden rounded-[90px] border border-[rgba(2,6,23,0.08)] bg-white px-[14px] py-[6px]">
             <div className="relative flex h-[14px] w-[14px] items-center justify-center overflow-hidden">
               <svg
                 aria-label="Pricing icon"
@@ -243,7 +243,7 @@ export default function PricingSection() {
             <div className="flex flex-col justify-center text-center font-medium font-sans text-[#37322F] text-xs leading-3">
               Plans & Pricing
             </div>
-          </div>
+          </div> */}
 
           {/* Title */}
           <div className="flex flex-col justify-center self-stretch text-center font-sans font-semibold text-3xl text-[#49423D] leading-tight tracking-tight md:text-5xl md:leading-[60px]">
