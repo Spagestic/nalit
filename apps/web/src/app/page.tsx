@@ -4,6 +4,7 @@ import { Footer } from "@/components/footer-section";
 import Header from "@/components/header";
 import HeroContent from "@/components/hero-content";
 import { LogoCloud } from "@/components/logo-cloud";
+import PricingSection from "@/components/pricing-section";
 import ShaderBackground from "@/components/shader-background";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
         <HeroContent />
       </ShaderBackground>
       <LogoCloud />
+      <PricingSection />
       <FAQ />
       <Footer
         brandName="NorthStar"
