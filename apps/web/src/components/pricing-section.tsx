@@ -3,25 +3,213 @@
 
 import { useState } from "react";
 
+const pricing = {
+  starter: {
+    monthly: 0,
+    annually: 0,
+  },
+  professional: {
+    monthly: 15,
+    annually: 12, // 20% discount for annual
+  },
+  enterprise: {
+    monthly: 30,
+    annually: 24, // 20% discount for annual
+  },
+};
+
+const starterFeatures = [
+  "3 practice sessions per month",
+  "Basic feedback on delivery",
+  "General interview questions",
+  "Community support",
+  "Progress tracking",
+];
+
+const professionalFeatures = [
+  "Unlimited practice sessions",
+  "Advanced speech analysis",
+  "Company-specific questions",
+  "Role-specific question banks",
+  "Detailed performance analytics",
+  "Filler word detection",
+  "Pace & clarity feedback",
+  "Priority email support",
+];
+
+const enterpriseFeatures = [
+  "Everything in Professional",
+  "Dedicated account manager",
+  "24/7 phone support",
+  "Custom onboarding",
+  "Advanced security features",
+  "SSO integration",
+  "Custom contracts",
+  "White-label options",
+];
+
+function BillingToggle({
+  billingPeriod,
+  onToggle,
+}: {
+  billingPeriod: "monthly" | "annually";
+  onToggle: (period: "monthly" | "annually") => void;
+}) {
+  return (
+    <div className="relative flex items-center justify-center gap-4 self-stretch px-6 py-9 md:px-16">
+      <div className="before:-z-10 relative z-20 flex items-center justify-center rounded-lg border border-[rgba(55,50,47,0.02)] bg-[rgba(55,50,47,0.03)] p-3 backdrop-blur-[44px] backdrop-brightness-110 backdrop-saturate-150 before:absolute before:inset-0 before:rounded-lg before:bg-white before:opacity-60">
+        <div className="relative flex items-center justify-center gap-[2px] rounded-[99px] border-[0.5px] border-[rgba(55,50,47,0.08)] bg-[rgba(55,50,47,0.10)] p-[2px] shadow-[0px_1px_0px_white]">
+          <div
+            className={`absolute top-[2px] h-[calc(100%-4px)] w-[calc(50%-1px)] rounded-[99px] bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.08)] transition-all duration-300 ease-in-out ${
+              billingPeriod === "annually" ? "left-[2px]" : "right-[2px]"
+            }`}
+          />
+
+          <button
+            className="relative z-10 flex flex-1 items-center justify-center gap-2 rounded-[99px] px-4 py-1 transition-colors duration-300"
+            onClick={() => onToggle("annually")}
+            type="button"
+          >
+            <div
+              className={`font-medium font-sans text-[13px] leading-5 transition-colors duration-300 ${
+                billingPeriod === "annually"
+                  ? "text-[#37322F]"
+                  : "text-[#6B7280]"
+              }`}
+            >
+              Annually
+            </div>
+          </button>
+
+          <button
+            className="relative z-10 flex flex-1 items-center justify-center gap-2 rounded-[99px] px-4 py-1 transition-colors duration-300"
+            onClick={() => onToggle("monthly")}
+            type="button"
+          >
+            <div
+              className={`font-medium font-sans text-[13px] leading-5 transition-colors duration-300 ${
+                billingPeriod === "monthly"
+                  ? "text-[#37322F]"
+                  : "text-[#6B7280]"
+              }`}
+            >
+              Monthly
+            </div>
+          </button>
+        </div>
+
+        <div className="absolute top-[5.25px] left-[5px] h-[3px] w-[3px] rounded-[99px] bg-[rgba(55,50,47,0.10)] shadow-[0px_0px_0.5px_rgba(0,0,0,0.12)]" />
+        <div className="absolute top-[5.25px] right-[5px] h-[3px] w-[3px] rounded-[99px] bg-[rgba(55,50,47,0.10)] shadow-[0px_0px_0.5px_rgba(0,0,0,0.12)]" />
+        <div className="absolute bottom-[5.25px] left-[5px] h-[3px] w-[3px] rounded-[99px] bg-[rgba(55,50,47,0.10)] shadow-[0px_0px_0.5px_rgba(0,0,0,0.12)]" />
+        <div className="absolute right-[5px] bottom-[5.25px] h-[3px] w-[3px] rounded-[99px] bg-[rgba(55,50,47,0.10)] shadow-[0px_0px_0.5px_rgba(0,0,0,0.12)]" />
+      </div>
+    </div>
+  );
+}
+
+function AnimatedPrice({
+  price,
+  billingPeriod,
+  // currentPeriod,
+}: {
+  price: { monthly: number; annually: number };
+  billingPeriod: "monthly" | "annually";
+  currentPeriod: "monthly" | "annually";
+}) {
+  return (
+    <div className="relative flex h-[60px] items-center font-medium font-serif text-5xl leading-[60px]">
+      <span className="invisible">${price[billingPeriod]}</span>
+      <span
+        aria-hidden={billingPeriod !== "annually"}
+        className="absolute inset-0 flex items-center transition-all duration-500"
+        style={{
+          opacity: billingPeriod === "annually" ? 1 : 0,
+          transform: `scale(${billingPeriod === "annually" ? 1 : 0.8})`,
+          filter: `blur(${billingPeriod === "annually" ? 0 : 4}px)`,
+        }}
+      >
+        ${price.annually}
+      </span>
+      <span
+        aria-hidden={billingPeriod !== "monthly"}
+        className="absolute inset-0 flex items-center transition-all duration-500"
+        style={{
+          opacity: billingPeriod === "monthly" ? 1 : 0,
+          transform: `scale(${billingPeriod === "monthly" ? 1 : 0.8})`,
+          filter: `blur(${billingPeriod === "monthly" ? 0 : 4}px)`,
+        }}
+      >
+        ${price.monthly}
+      </span>
+    </div>
+  );
+}
+
+function FeatureList({
+  features,
+  checkColor = "#9CA3AF",
+  textColor = "text-[rgba(55,50,47,0.80)]",
+}: {
+  features: string[];
+  checkColor?: string;
+  textColor?: string;
+}) {
+  return (
+    <div className="flex flex-col items-start justify-start gap-2 self-stretch">
+      {features.map((feature, index) => (
+        <div
+          className="flex items-center justify-start gap-[13px] self-stretch"
+          key={index as number}
+        >
+          <div className="relative flex h-4 w-4 items-center justify-center">
+            <svg
+              aria-label="Included feature"
+              fill="none"
+              height="12"
+              viewBox="0 0 12 12"
+              width="12"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Included feature checkmark</title>
+              <path
+                d="M10 3L4.5 8.5L2 6"
+                stroke={checkColor}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </div>
+          <div
+            className={`flex-1 font-normal font-sans text-[12.5px] leading-5 ${textColor}`}
+          >
+            {feature}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function DecorativePattern() {
+  return (
+    <div className="relative hidden w-12 self-stretch overflow-hidden md:block">
+      <div className="absolute top-[-120px] left-[-58px] flex w-[162px] flex-col items-start justify-start">
+        {Array.from({ length: 200 }).map((_, i) => (
+          <div
+            className="h-4 origin-top-left rotate-[-45deg] self-stretch outline outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
+            key={i as number}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function PricingSection() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annually">(
     "annually"
   );
-
-  const pricing = {
-    starter: {
-      monthly: 0,
-      annually: 0,
-    },
-    professional: {
-      monthly: 15,
-      annually: 12, // 20% discount for annual
-    },
-    enterprise: {
-      monthly: 30,
-      annually: 24, // 20% discount for annual
-    },
-  };
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-2">
@@ -70,74 +258,15 @@ export default function PricingSection() {
       </div>
 
       {/* Billing Toggle Section */}
-      <div className="relative flex items-center justify-center gap-4 self-stretch px-6 py-9 md:px-16">
-        {/* Horizontal line */}
-        {/* <div className="-translate-x-1/2 absolute top-[63px] left-1/2 z-0 h-0 w-full max-w-[1060px] transform border-[rgba(55,50,47,0.12)] border-t" /> */}
-
-        {/* Toggle Container */}
-        <div className="before:-z-10 relative z-20 flex items-center justify-center rounded-lg border border-[rgba(55,50,47,0.02)] bg-[rgba(55,50,47,0.03)] p-3 backdrop-blur-[44px] backdrop-brightness-110 backdrop-saturate-150 before:absolute before:inset-0 before:rounded-lg before:bg-white before:opacity-60">
-          <div className="relative flex items-center justify-center gap-[2px] rounded-[99px] border-[0.5px] border-[rgba(55,50,47,0.08)] bg-[rgba(55,50,47,0.10)] p-[2px] shadow-[0px_1px_0px_white]">
-            <div
-              className={`absolute top-[2px] h-[calc(100%-4px)] w-[calc(50%-1px)] rounded-[99px] bg-white shadow-[0px_2px_4px_rgba(0,0,0,0.08)] transition-all duration-300 ease-in-out ${
-                billingPeriod === "annually" ? "left-[2px]" : "right-[2px]"
-              }`}
-            />
-
-            <button
-              className="relative z-10 flex flex-1 items-center justify-center gap-2 rounded-[99px] px-4 py-1 transition-colors duration-300"
-              onClick={() => setBillingPeriod("annually")}
-              type="button"
-            >
-              <div
-                className={`font-medium font-sans text-[13px] leading-5 transition-colors duration-300 ${
-                  billingPeriod === "annually"
-                    ? "text-[#37322F]"
-                    : "text-[#6B7280]"
-                }`}
-              >
-                Annually
-              </div>
-            </button>
-
-            <button
-              className="relative z-10 flex flex-1 items-center justify-center gap-2 rounded-[99px] px-4 py-1 transition-colors duration-300"
-              onClick={() => setBillingPeriod("monthly")}
-              type="button"
-            >
-              <div
-                className={`font-medium font-sans text-[13px] leading-5 transition-colors duration-300 ${
-                  billingPeriod === "monthly"
-                    ? "text-[#37322F]"
-                    : "text-[#6B7280]"
-                }`}
-              >
-                Monthly
-              </div>
-            </button>
-          </div>
-
-          {/* Decorative dots */}
-          <div className="absolute top-[5.25px] left-[5px] h-[3px] w-[3px] rounded-[99px] bg-[rgba(55,50,47,0.10)] shadow-[0px_0px_0.5px_rgba(0,0,0,0.12)]" />
-          <div className="absolute top-[5.25px] right-[5px] h-[3px] w-[3px] rounded-[99px] bg-[rgba(55,50,47,0.10)] shadow-[0px_0px_0.5px_rgba(0,0,0,0.12)]" />
-          <div className="absolute bottom-[5.25px] left-[5px] h-[3px] w-[3px] rounded-[99px] bg-[rgba(55,50,47,0.10)] shadow-[0px_0px_0.5px_rgba(0,0,0,0.12)]" />
-          <div className="absolute right-[5px] bottom-[5.25px] h-[3px] w-[3px] rounded-[99px] bg-[rgba(55,50,47,0.10)] shadow-[0px_0px_0.5px_rgba(0,0,0,0.12)]" />
-        </div>
-      </div>
+      <BillingToggle
+        billingPeriod={billingPeriod}
+        onToggle={setBillingPeriod}
+      />
 
       {/* Pricing Cards Section */}
       <div className="flex items-center justify-center self-stretch border-[rgba(55,50,47,0.12)] border-t border-b">
         <div className="flex w-full items-start justify-center">
-          {/* Left Decorative Pattern */}
-          <div className="relative hidden w-12 self-stretch overflow-hidden md:block">
-            <div className="absolute top-[-120px] left-[-58px] flex w-[162px] flex-col items-start justify-start">
-              {Array.from({ length: 200 }).map((_, i) => (
-                <div
-                  className="h-4 origin-top-left rotate-[-45deg] self-stretch outline outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
-                  key={i as number}
-                />
-              ))}
-            </div>
-          </div>
+          <DecorativePattern />
 
           {/* Pricing Cards Container */}
           <div className="flex flex-1 flex-col items-center justify-center gap-6 py-12 md:flex-row md:items-stretch md:py-0">
@@ -156,33 +285,11 @@ export default function PricingSection() {
 
                 <div className="flex flex-col items-start justify-start gap-2 self-stretch">
                   <div className="flex flex-col items-start justify-start gap-1">
-                    <div className="relative flex h-[60px] items-center font-medium font-serif text-5xl text-[#37322F] leading-[60px]">
-                      <span className="invisible">
-                        ${pricing.starter[billingPeriod]}
-                      </span>
-                      <span
-                        aria-hidden={billingPeriod !== "annually"}
-                        className="absolute inset-0 flex items-center transition-all duration-500"
-                        style={{
-                          opacity: billingPeriod === "annually" ? 1 : 0,
-                          transform: `scale(${billingPeriod === "annually" ? 1 : 0.8})`,
-                          filter: `blur(${billingPeriod === "annually" ? 0 : 4}px)`,
-                        }}
-                      >
-                        ${pricing.starter.annually}
-                      </span>
-                      <span
-                        aria-hidden={billingPeriod !== "monthly"}
-                        className="absolute inset-0 flex items-center transition-all duration-500"
-                        style={{
-                          opacity: billingPeriod === "monthly" ? 1 : 0,
-                          transform: `scale(${billingPeriod === "monthly" ? 1 : 0.8})`,
-                          filter: `blur(${billingPeriod === "monthly" ? 0 : 4}px)`,
-                        }}
-                      >
-                        ${pricing.starter.monthly}
-                      </span>
-                    </div>
+                    <AnimatedPrice
+                      billingPeriod={billingPeriod}
+                      currentPeriod={billingPeriod}
+                      price={pricing.starter}
+                    />
                     <div className="font-medium font-sans text-[#847971] text-sm">
                       forever
                     </div>
@@ -197,43 +304,7 @@ export default function PricingSection() {
                 </div>
               </div>
 
-              <div className="flex flex-col items-start justify-start gap-2 self-stretch">
-                {[
-                  "3 practice sessions per month",
-                  "Basic feedback on delivery",
-                  "General interview questions",
-                  "Community support",
-                  "Progress tracking",
-                ].map((feature, index) => (
-                  <div
-                    className="flex items-center justify-start gap-[13px] self-stretch"
-                    key={index as number}
-                  >
-                    <div className="relative flex h-4 w-4 items-center justify-center">
-                      <svg
-                        aria-label="Included feature"
-                        fill="none"
-                        height="12"
-                        viewBox="0 0 12 12"
-                        width="12"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title>Included feature checkmark</title>
-                        <path
-                          d="M10 3L4.5 8.5L2 6"
-                          stroke="#9CA3AF"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="1.5"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex-1 font-normal font-sans text-[12.5px] text-[rgba(55,50,47,0.80)] leading-5">
-                      {feature}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <FeatureList features={starterFeatures} />
             </div>
 
             {/* Professional Plan (Featured) */}
@@ -252,32 +323,12 @@ export default function PricingSection() {
 
                 <div className="flex flex-col items-start justify-start gap-2 self-stretch">
                   <div className="flex flex-col items-start justify-start gap-1">
-                    <div className="relative flex h-[60px] items-center font-medium font-serif text-5xl text-[#F0EFEE] leading-[60px]">
-                      <span className="invisible">
-                        ${pricing.professional[billingPeriod]}
-                      </span>
-                      <span
-                        aria-hidden={billingPeriod !== "annually"}
-                        className="absolute inset-0 flex items-center transition-all duration-500"
-                        style={{
-                          opacity: billingPeriod === "annually" ? 1 : 0,
-                          transform: `scale(${billingPeriod === "annually" ? 1 : 0.8})`,
-                          filter: `blur(${billingPeriod === "annually" ? 0 : 4}px)`,
-                        }}
-                      >
-                        ${pricing.professional.annually}
-                      </span>
-                      <span
-                        aria-hidden={billingPeriod !== "monthly"}
-                        className="absolute inset-0 flex items-center transition-all duration-500"
-                        style={{
-                          opacity: billingPeriod === "monthly" ? 1 : 0,
-                          transform: `scale(${billingPeriod === "monthly" ? 1 : 0.8})`,
-                          filter: `blur(${billingPeriod === "monthly" ? 0 : 4}px)`,
-                        }}
-                      >
-                        ${pricing.professional.monthly}
-                      </span>
+                    <div className="text-[#F0EFEE]">
+                      <AnimatedPrice
+                        billingPeriod={billingPeriod}
+                        currentPeriod={billingPeriod}
+                        price={pricing.professional}
+                      />
                     </div>
                     <div className="font-medium font-sans text-[#D2C6BF] text-sm">
                       per {billingPeriod === "monthly" ? "month" : "year"}
@@ -294,46 +345,11 @@ export default function PricingSection() {
                 </div>
               </div>
 
-              <div className="flex flex-col items-start justify-start gap-2 self-stretch">
-                {[
-                  "Unlimited practice sessions",
-                  "Advanced speech analysis",
-                  "Company-specific questions",
-                  "Role-specific question banks",
-                  "Detailed performance analytics",
-                  "Filler word detection",
-                  "Pace & clarity feedback",
-                  "Priority email support",
-                ].map((feature, index) => (
-                  <div
-                    className="flex items-center justify-start gap-[13px] self-stretch"
-                    key={index as number}
-                  >
-                    <div className="relative flex h-4 w-4 items-center justify-center">
-                      <svg
-                        aria-label="Included feature"
-                        fill="none"
-                        height="12"
-                        viewBox="0 0 12 12"
-                        width="12"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title>Included feature checkmark</title>
-                        <path
-                          d="M10 3L4.5 8.5L2 6"
-                          stroke="#FF8000"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="1.5"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex-1 font-normal font-sans text-[#F0EFEE] text-[12.5px] leading-5">
-                      {feature}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <FeatureList
+                checkColor="#FF8000"
+                features={professionalFeatures}
+                textColor="text-[#F0EFEE]"
+              />
             </div>
 
             {/* Enterprise Plan */}
@@ -351,33 +367,11 @@ export default function PricingSection() {
 
                 <div className="flex flex-col items-start justify-start gap-2 self-stretch">
                   <div className="flex flex-col items-start justify-start gap-1">
-                    <div className="relative flex h-[60px] items-center font-medium font-serif text-5xl text-[#37322F] leading-[60px]">
-                      <span className="invisible">
-                        ${pricing.enterprise[billingPeriod]}
-                      </span>
-                      <span
-                        aria-hidden={billingPeriod !== "annually"}
-                        className="absolute inset-0 flex items-center transition-all duration-500"
-                        style={{
-                          opacity: billingPeriod === "annually" ? 1 : 0,
-                          transform: `scale(${billingPeriod === "annually" ? 1 : 0.8})`,
-                          filter: `blur(${billingPeriod === "annually" ? 0 : 4}px)`,
-                        }}
-                      >
-                        ${pricing.enterprise.annually}
-                      </span>
-                      <span
-                        aria-hidden={billingPeriod !== "monthly"}
-                        className="absolute inset-0 flex items-center transition-all duration-500"
-                        style={{
-                          opacity: billingPeriod === "monthly" ? 1 : 0,
-                          transform: `scale(${billingPeriod === "monthly" ? 1 : 0.8})`,
-                          filter: `blur(${billingPeriod === "monthly" ? 0 : 4}px)`,
-                        }}
-                      >
-                        ${pricing.enterprise.monthly}
-                      </span>
-                    </div>
+                    <AnimatedPrice
+                      billingPeriod={billingPeriod}
+                      currentPeriod={billingPeriod}
+                      price={pricing.enterprise}
+                    />
                     <div className="font-medium font-sans text-[#847971] text-sm">
                       per {billingPeriod === "monthly" ? "month" : "year"}, per
                       user.
@@ -393,46 +387,7 @@ export default function PricingSection() {
                 </div>
               </div>
 
-              <div className="flex flex-col items-start justify-start gap-2 self-stretch">
-                {[
-                  "Everything in Professional",
-                  "Dedicated account manager",
-                  "24/7 phone support",
-                  "Custom onboarding",
-                  "Advanced security features",
-                  "SSO integration",
-                  "Custom contracts",
-                  "White-label options",
-                ].map((feature, index) => (
-                  <div
-                    className="flex items-center justify-start gap-[13px] self-stretch"
-                    key={index as number}
-                  >
-                    <div className="relative flex h-4 w-4 items-center justify-center">
-                      <svg
-                        aria-label="Included feature"
-                        fill="none"
-                        height="12"
-                        viewBox="0 0 12 12"
-                        width="12"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <title>Included feature checkmark</title>
-                        <path
-                          d="M10 3L4.5 8.5L2 6"
-                          stroke="#9CA3AF"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="1.5"
-                        />
-                      </svg>
-                    </div>
-                    <div className="flex-1 font-normal font-sans text-[12.5px] text-[rgba(55,50,47,0.80)] leading-5">
-                      {feature}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <FeatureList features={enterpriseFeatures} />
             </div>
           </div>
         </div>
