@@ -15,21 +15,21 @@ export default function Header() {
       <nav className="flex items-center space-x-2">
         <a
           className="rounded-full px-3 py-2 font-light text-white/80 text-xs transition-all duration-200 hover:bg-white/10 hover:text-white"
-          href="/features"
+          href="#features"
         >
           Features
         </a>
         <a
           className="rounded-full px-3 py-2 font-light text-white/80 text-xs transition-all duration-200 hover:bg-white/10 hover:text-white"
-          href="/pricing"
+          href="#pricing"
         >
           Pricing
         </a>
         <a
           className="rounded-full px-3 py-2 font-light text-white/80 text-xs transition-all duration-200 hover:bg-white/10 hover:text-white"
-          href="/docs"
+          href="#faqs"
         >
-          Docs
+          FAQs
         </a>
       </nav>
 
