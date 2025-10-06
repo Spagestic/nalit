@@ -12,7 +12,7 @@ import GoogleSvg from "../logos/google.svg";
 import JpMorganSvg from "../logos/jp-morgan.svg";
 import KpmgSvg from "../logos/kpmg-logo.svg";
 import AmazonSvg from "../logos/logo-amazon.svg";
-import McKinseySvg from "../logos/mckinsey-company.svg";
+import McKinseySvg from "../logos/mckinsey.svg";
 import MetaSvg from "../logos/meta-3.svg";
 import MicrosoftSvg from "../logos/microsoft-6.svg";
 import MorganStanleySvg from "../logos/morgan-stanley-new.svg";
@@ -48,20 +48,20 @@ export const Meta: React.FC = () => <MetaSvg className="h-8 w-auto" />;
 
 export const Amazon: React.FC = () => <AmazonSvg className="h-6 w-auto" />;
 
-export const McKinsey: React.FC = () => <McKinseySvg className="h-8 w-auto" />;
+export const McKinsey: React.FC = () => <McKinseySvg className="h-16 w-auto" />;
 
-export const BCG: React.FC = () => <BcgSvg className="h-8 w-auto" />;
+export const BCG: React.FC = () => <BcgSvg className="h-2 w-auto" />;
 
-export const Bain: React.FC = () => <BainSvg className="h-8 w-auto" />;
+export const Bain: React.FC = () => <BainSvg className="h-6 w-auto" />;
 
-export const Deloitte: React.FC = () => <DeloitteSvg className="h-8 w-auto" />;
+export const Deloitte: React.FC = () => <DeloitteSvg className="h-6 w-auto" />;
 
 export const Accenture: React.FC = () => (
   <AccentureSvg className="h-8 w-auto" />
 );
 
-export const PwC: React.FC = () => <PwcSvg className="h-8 w-auto" />;
+export const PwC: React.FC = () => <PwcSvg className="h-14 w-auto" />;
 
-export const EY: React.FC = () => <EySvg className="h-8 w-auto" />;
+export const EY: React.FC = () => <EySvg className="h-16 w-auto" />;
 
-export const KPMG: React.FC = () => <KpmgSvg className="h-8 w-auto" />;
+export const KPMG: React.FC = () => <KpmgSvg className="h-10 w-auto" />;
