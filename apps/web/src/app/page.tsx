@@ -1,4 +1,5 @@
 import { Github, Hexagon, Twitter } from "lucide-react";
+import FAQ from "@/components/faq-section";
 import { Footer } from "@/components/footer-section";
 import Header from "@/components/header";
 import HeroContent from "@/components/hero-content";
@@ -14,6 +15,7 @@ export default function Home() {
         <HeroContent />
       </ShaderBackground>
       <LogoCloud />
+      <FAQ />
       <Footer
         brandName="NorthStar"
         copyright={{
