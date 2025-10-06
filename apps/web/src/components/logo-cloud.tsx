@@ -84,11 +84,11 @@ export function LogoCloud({
   ],
 }: LogoCloudAnimatedProps) {
   return (
-    <section className="overflow-hidden py-20">
+    <section className="overflow-hidden py-40">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           animate={{ opacity: 1, y: 0 }}
-          className="mb-16 text-center"
+          className="mb-0 text-center"
           initial={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.6 }}
         >
