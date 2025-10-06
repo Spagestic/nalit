@@ -212,7 +212,10 @@ export default function PricingSection() {
   );
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-2">
+    <div
+      className="flex w-full flex-col items-center justify-center gap-2"
+      id="pricing"
+    >
       {/* Header Section */}
       <div className="flex items-center justify-center gap-6 self-stretch px-6 md:px-24">
         <div className="flex w-full max-w-[586px] flex-col items-center justify-start gap-4 overflow-hidden rounded-lg px-6 py-5">

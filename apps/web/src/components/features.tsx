@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export function Features() {
   return (
-    <section className="py-16 md:py-32">
+    <section className="py-16 md:py-32" id="features">
       <div className="@container mx-auto max-w-5xl px-6">
         <div className="text-center">
           <h2 className="text-balance font-semibold text-4xl lg:text-5xl">

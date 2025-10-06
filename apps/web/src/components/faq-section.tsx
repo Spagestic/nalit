@@ -72,7 +72,7 @@ export default function FAQ() {
   };
 
   return (
-    <div className="flex w-full items-start justify-center">
+    <div className="flex w-full items-start justify-center" id="faqs">
       <div className="flex flex-1 flex-col items-start justify-start gap-6 px-4 py-16 md:px-12 md:py-20 lg:flex-row lg:gap-12">
         {/* Left Column - Header */}
         <div className="flex w-full flex-col items-start justify-center gap-4 lg:flex-1 lg:py-5">
